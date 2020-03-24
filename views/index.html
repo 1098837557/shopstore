@@ -1,0 +1,67 @@
+
+	<div class="center_con clearfix">
+		<ul class="subnav fl">
+		</ul>
+		<div class="slide fl">
+			<ul class="slide_pics">
+				{{range .IndexGoodsBanner}}
+					<li><img src="images/slide.jpg" alt="首页滚动图,没有传值"></li>
+				{{end}}
+			</ul>
+			<div class="prev"></div>
+			<div class="next"></div>
+			<ul class="points"></ul>
+		</div>
+		<div class="adv fl">
+			{{range .indexPromotionBanner}}
+				<a href="{{.Url}}"><img src="images/adv01.jpg" alt="促销商品展示,没有传值"></a>
+			{{end}}
+		</div>
+	</div>
+	{{range .goods}}
+		<div class="list_model">
+		<div class="list_title clearfix">
+			<h3 class="fl" id="model01">{{.type.Name}}</h3>
+			<div class="subtitle fl">
+				<span>|</span>
+			{{range .textGoods}}
+				<a href="/goodsDetails?id={{.GoodsSKU.Id}}">{{.GoodsSKU.Name}}</a>
+			{{end}}
+			</div>
+			<a href="#" class="goods_more fr" id="fruit_more">查看更多 ></a>
+		</div>
+
+		<div class="goods_con clearfix">
+			<div class="goods_banner fl"><img src="images/banner01.jpg"></div>
+			<ul class="goods_list fl">
+				{{range .imagegoods}}
+					<li>
+					<h4><a href="/goodsDetails?id={{.GoodsSKU.Id}}">{{.GoodsSKU.Name}}</a></h4>
+					<a href="/goodsDetails?id={{.GoodsSKU.Id}}"><img src="images/goods/goods003.jpg"></a>
+					<div class="prize">¥ {{.GoodsSKU.Price}}</div>
+				</li>
+				{{end}}
+
+			</ul>
+		</div>
+	</div>
+	{{end}}
+	<script type="text/javascript" src="/static/js/slideshow.js"></script>
+	<script type="text/javascript">
+		BCSlideshow('focuspic');
+		var oFruit = document.getElementById('fruit_more');
+		var oShownum = document.getElementById('show_count');
+
+		var hasorder = localStorage.getItem('order_finish');
+
+		if(hasorder)
+		{
+			oShownum.innerHTML = '2';
+		}
+
+		oFruit.onclick = function(){
+			window.location.href = 'list.html';
+		}
+	</script>
+</body>
+</html>
